@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.3.1  # Use the latest compatible version
+  http: ^1.2.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -41,6 +42,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.10.0
+
 
 flutter_icons:
   android: true

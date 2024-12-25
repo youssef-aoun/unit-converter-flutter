@@ -8,6 +8,8 @@ import 'units/weight_screen.dart';
 import 'units/temperature_screen.dart';
 import 'about_us_screen.dart';
 import 'contact_us_screen.dart';
+import 'units/currency_screen.dart';
+import 'units/cryptoCurrency_screen.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -150,27 +152,49 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            _buildCategoryCard(
-              title: "Currencies",
-              icon: Icons.monetization_on,
-              onTap: () {
-                // Placeholder for future functionality
-              },
-              isComingSoon: true,
+            Stack(
+              children: [
+                // Wrap the category card in a Positioned widget to preserve its size
+                Positioned.fill(
+                  child: _buildCategoryCard(
+                    title: "Currency",
+                    icon: Icons.monetization_on,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const CurrencyScreen()),
+                      );
+                    },
+                  ),
+                ),
+                buildRedRibbon(), // Add the red ribbon
+              ],
             ),
-            _buildCategoryCard(
-              title: "Cryptocurrencies",
-              icon: Icons.currency_bitcoin,
-              onTap: () {
-                // Placeholder for future functionality
-              },
-              isComingSoon: true,
+            Stack(
+              children: [
+                // Wrap the category card in a Positioned widget to preserve its size
+                Positioned.fill(
+                  child: _buildCategoryCard(
+                    title: "Crypto-Currency",
+                    icon: Icons.monetization_on,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const CryptoCurrencyScreen()),
+                      );
+                    },
+                  ),
+                ),
+                buildRedRibbon(), // Add the red ribbon
+              ],
             ),
           ],
         ),
       ),
     );
   }
+
+
 
   // A helper function to build a single category card
   Widget _buildCategoryCard({
@@ -206,6 +230,33 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  Widget buildRedRibbon() {
+    return Positioned(
+      top: 0,
+      right: 0,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(12.0),
+            bottomLeft: Radius.circular(12.0),
+          ),
+        ),
+        child: const Text(
+          'New!',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 12.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+
 }
 
 class MyTextField extends StatelessWidget {
